@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Bind(R.id.btnAbout)
-    private Button btnAbout;
+    public Button btnAbout;
 
 
     @Override
@@ -27,6 +27,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
         btnAbout = (Button) findViewById(R.id.btnAbout);
         btnAbout.setOnClickListener(this);
+        String s = "lol";
+        s.trim();
+
 
     }
 
