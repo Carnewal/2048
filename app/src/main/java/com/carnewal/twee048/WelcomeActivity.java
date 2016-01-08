@@ -11,11 +11,9 @@ import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
-
-    @Bind(R.id.btnAbout)
-    public Button btnAbout;
+public class WelcomeActivity extends AppCompatActivity {
 
 
     @Override
@@ -24,11 +22,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_welcome_table);
         ButterKnife.bind(this);
 
-
-        btnAbout = (Button) findViewById(R.id.btnAbout);
-        btnAbout.setOnClickListener(this);
-        String s = "lol";
-        s.trim();
 
 
     }
@@ -58,29 +51,28 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
+    @OnClick(R.id.btnContinue)
     public void actionContinue(View v) {
         Toast.makeText(this, "Continue?", Toast.LENGTH_SHORT).show();
     }
+    @OnClick(R.id.btnNewGame)
     public void actionNewGame(View v) {
-        Toast.makeText(this, "Continue?",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "New?",Toast.LENGTH_SHORT).show();
 
     }
+
+    @OnClick(R.id.btnAbout)
     public void actionAbout(View v) {
-        Toast.makeText(this, "Continue?" ,Toast.LENGTH_SHORT).show();
-
-    }
-    public void actionExit(View v) {
-        Toast.makeText(this, "Continue?", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onClick(View v) {
         new AlertDialog.Builder(WelcomeActivity.this)
                 .setTitle(R.string.welcome_about)
                 .setMessage(R.string.about_text)
                 .show();
     }
+    @OnClick(R.id.btnExit)
+    public void actionExit(View v) {
+        this.finish();
+    }
+
 
 
 }
