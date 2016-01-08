@@ -10,7 +10,7 @@
 
 
     <item name="game_board_background" type="color">#BBADA0</item>
-    <item name="game_board_tile_empty" type="color">#CDC0B4</item>
+    <item name="game_board_card_empty" type="color">#CDC0B4</item>
 
 
 </resources>

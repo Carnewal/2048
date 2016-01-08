@@ -1,15 +1,16 @@
-package com.carnewal.twee048;
+package com.carnewal.twee048.activity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import butterknife.Bind;
+import com.carnewal.twee048.R;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -53,11 +54,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnContinue)
     public void actionContinue(View v) {
-        Toast.makeText(this, "Continue?", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, PlayActivity.class);
+        startActivity(intent);
     }
     @OnClick(R.id.btnNewGame)
     public void actionNewGame(View v) {
-        Toast.makeText(this, "New?",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "New?", Toast.LENGTH_SHORT).show();
 
     }
 
