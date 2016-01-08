@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="game_desert" type="color">#FAF8EF</item>
+    <item name="game_background_desert" type="color">#FAF8EF</item>
+
+    <item name="game_button" type="color">#8F7A66</item>
+
+    <item name="game_text_dark" type="color">#776F6C</item>
+    <item name="game_text_light" type="color">#FFF9ED</item>
+
+
     <item name="game_board_background" type="color">#BBADA0</item>
-    <item name="game_tile_empty" type="color">#CDC0B4</item>
+    <item name="game_board_tile_empty" type="color">#CDC0B4</item>
 
 
 </resources>

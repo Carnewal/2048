@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_welcome_table);
 
 
     }
@@ -48,15 +49,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
     public void actionContinue(View v) {
-
+        Toast.makeText(this, "Continue?", Toast.LENGTH_SHORT).show();
     }
     public void actionNewGame(View v) {
+        Toast.makeText(this, "Continue?",Toast.LENGTH_SHORT).show();
 
     }
     public void actionAbout(View v) {
+        Toast.makeText(this, "Continue?" ,Toast.LENGTH_SHORT).show();
 
     }
     public void actionExit(View v) {
+        Toast.makeText(this, "Continue?", Toast.LENGTH_SHORT).show();
 
     }
 
