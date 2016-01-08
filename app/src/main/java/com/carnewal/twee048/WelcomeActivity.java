@@ -1,16 +1,19 @@
 package com.carnewal.twee048;
 
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class WelcomeActivity extends AppCompatActivity {
 
 
 
+    private Button btnAbout;
 
 
 
@@ -20,6 +23,16 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_table);
 
+        btnAbout = (Button) findViewById(R.id.btnAbout);
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(WelcomeActivity.this)
+                        .setTitle(R.string.welcome_about)
+                        .setMessage(R.string.about_text)
+                        .show();
+            }
+        });
 
     }
 
