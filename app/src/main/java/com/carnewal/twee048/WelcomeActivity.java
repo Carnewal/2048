@@ -9,30 +9,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class WelcomeActivity extends AppCompatActivity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
+public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    @Bind(R.id.btnAbout)
     private Button btnAbout;
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_table);
+        ButterKnife.bind(this);
+
 
         btnAbout = (Button) findViewById(R.id.btnAbout);
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(WelcomeActivity.this)
-                        .setTitle(R.string.welcome_about)
-                        .setMessage(R.string.about_text)
-                        .show();
-            }
-        });
+        btnAbout.setOnClickListener(this);
 
     }
 
@@ -77,9 +71,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
-
-
-
+    @Override
+    public void onClick(View v) {
+        new AlertDialog.Builder(WelcomeActivity.this)
+                .setTitle(R.string.welcome_about)
+                .setMessage(R.string.about_text)
+                .show();
+    }
 
 
 }
