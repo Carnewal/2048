@@ -12,5 +12,19 @@
     <item name="game_board_background" type="color">#BBADA0</item>
     <item name="game_board_card_empty" type="color">#CDC0B4</item>
 
+    <item name="game_board_card_2" type="color">#EEE4DA</item>
+    <item name="game_board_card_4" type="color">#EDE0C8</item>
+    <item name="game_board_card_8" type="color">#F2B179</item>
+    <item name="game_board_card_16" type="color">#F59563</item>
+    <item name="game_board_card_32" type="color">#F57C5F</item>
+    <item name="game_board_card_64" type="color">#F6643D</item>
+    <item name="game_board_card_128" type="color">#EDCE71</item>
+    <item name="game_board_card_256" type="color">#EDCC63</item>
+    <item name="game_board_card_512" type="color">#DFA92D</item>
+    <item name="game_board_card_1024" type="color">#E0A51B</item>
+    <item name="game_board_card_2048" type="color">#EEC22E</item>
+
+    <item name="game_board_card_other" type="color">#ffffff</item>
+
 
 </resources>
