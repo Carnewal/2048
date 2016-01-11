@@ -1,6 +1,8 @@
 package com.carnewal.twee048.layout;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.GridLayout;
 import com.carnewal.twee048.util.Action;
 import com.carnewal.twee048.util.GameUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +19,7 @@ import java.util.List;
 /**
  * Created by Brecht on 8/01/2016.
  */
-public class Board extends GridLayout {
+public class Board extends GridLayout implements Serializable {
 
 
     private static final int HOR = 4;
@@ -51,10 +54,6 @@ public class Board extends GridLayout {
         startGame();
     }
 
-
-    private void initBoard() {
-
-    }
 
 
     private void createCardLayouts() {
@@ -179,7 +178,7 @@ public class Board extends GridLayout {
 
     }
 
-    public void doAction(Action action) {
+    public void doAction(SharedPreferences p, Action action) {
 
         Card[][] board = cards.clone();
 
@@ -198,7 +197,71 @@ public class Board extends GridLayout {
 
 
         addRandomTiles(1);
+
+        save(p);
     }
+
+
+    private void save(SharedPreferences p) {
+        String output = this.toString();
+
+        SharedPreferences.Editor editor = p.edit();
+        editor.putString("save", this.toString());
+        editor.commit();
+    }
+
+    public void reset() {
+       for(int i = 0; i< cards.length; i++) {
+           for (int j = 0; j < cards[0].length; j++) {
+               cards[i][j].setValue(0);
+           }
+       }
+        addRandomTiles(2);
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for(int i = 0; i< cards.length; i++) {
+            for (int j = 0; j < cards[0].length; j++) {
+                s+= cards[i][j].getValue();
+                s+=",";
+            }
+            s = s.substring(0, s.length()-1); //remove last comma
+            s +="/";
+        }
+        s = s.substring(0, s.length()-1); //remove last slash
+        return s;
+    }
+
+    public void fill(String s) {
+        String[] rows = s.split("/");
+        for(int i = 0; i < rows.length;i++) {
+            String[] vals = rows[i].split(",");
+            for(int j = 0; j < vals.length; j++){
+                cards[i][j].setValue(Integer.parseInt(vals[j]));
+            }
+        }
+    }
+
+    public int[][] retreive() {
+        int[][] seed = new int[cards.length][cards[0].length];
+        for(int i = 0; i< cards.length; i++) {
+            for (int j = 0; j < cards[0].length; j++) {
+               seed[i][j] = cards[i][j].getValue();
+            }
+        }
+        return seed;
+    }
+
+    public void fill(int[][] seed) {
+        for(int i = 0; i< cards.length; i++) {
+            for (int j = 0; j < cards[0].length; j++) {
+                cards[i][j].setValue(seed[i][j]);
+            }
+        }
+    }
+
 
 
 }

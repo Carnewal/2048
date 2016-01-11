@@ -1,6 +1,7 @@
 package com.carnewal.twee048.activity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,11 +56,29 @@ public class WelcomeActivity extends AppCompatActivity {
     @OnClick(R.id.btnContinue)
     public void actionContinue(View v) {
         Intent intent = new Intent(this, PlayActivity.class);
+        intent.putExtra("new", false);
         startActivity(intent);
     }
     @OnClick(R.id.btnNewGame)
     public void actionNewGame(View v) {
-        Toast.makeText(this, "New?", Toast.LENGTH_SHORT).show();
+
+        final WelcomeActivity me = this;
+
+        new android.support.v7.app.AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.restart)
+                .setMessage(R.string.really_restart)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(me, PlayActivity.class);
+                        intent.putExtra("new", true);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(R.string.no, null)
+                .show();
+
 
     }
 

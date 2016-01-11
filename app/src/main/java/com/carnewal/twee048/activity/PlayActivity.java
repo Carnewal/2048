@@ -1,6 +1,9 @@
 package com.carnewal.twee048.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,8 @@ import com.carnewal.twee048.R;
 import com.carnewal.twee048.layout.Board;
 import com.carnewal.twee048.listener.OnSwipeTouchListener;
 import com.carnewal.twee048.util.Action;
+
+import java.util.prefs.Preferences;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,26 +35,40 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
         ButterKnife.bind(this);
 
-        board.setOnTouchListener(new OnSwipeTouchListener(board.getContext()){
+        if (getIntent().getExtras().getBoolean("new")) {
 
+        } else {
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            String boardString = sharedPref.getString("save", "nil");
+
+            if(boardString != "nil") {
+                board.fill(boardString);
+            }
+
+        }
+
+        board.setOnTouchListener(new OnSwipeTouchListener(board.getContext()) {
+
+            SharedPreferences p = getPreferences(Context.MODE_PRIVATE);
 
             @Override
             public void onSwipeDown() {
-                board.doAction(Action.DOWN);
+                board.doAction(p,Action.DOWN);
             }
 
             @Override
-            public void onSwipeLeft() { board.doAction(Action.LEFT);
+            public void onSwipeLeft() {
+                board.doAction(p,Action.LEFT);
             }
 
             @Override
             public void onSwipeRight() {
-                board.doAction(Action.RIGHT);
+                board.doAction(p,Action.RIGHT);
             }
 
             @Override
             public void onSwipeUp() {
-                board.doAction(Action.UP);
+                board.doAction(p, Action.UP);
             }
         });
 
@@ -74,9 +93,9 @@ public class PlayActivity extends AppCompatActivity {
         if (id == R.id.action_play_menu_home) {
             this.finish();
             return true;
-        } else if(id == R.id.action_play_menu_settings) {
+        } else if (id == R.id.action_play_menu_settings) {
             return true;
-        } else if(id == R.id.action_play_menu_refresh) {
+        } else if (id == R.id.action_play_menu_refresh) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle(R.string.restart)
@@ -84,7 +103,7 @@ public class PlayActivity extends AppCompatActivity {
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Log.i("Todo", "Restart");
+                            board.reset();
                         }
                     })
                     .setNegativeButton(R.string.no, null)
